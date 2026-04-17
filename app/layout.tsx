@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-
 import { PrimeReactProvider } from 'primereact/api';
-
 import "primereact/resources/primereact.min.css";
-import "primereact/resources/themes/lara-light-green/theme.css";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primeicons/primeicons.css";
+import "primeflex/primeflex.css";
+import "../public/styles/layout.scss";
+import "../public/styles/theme.scss";
+import { LayoutProvider } from "./contexts/LayoutContext";
+import Layout from "./components/layout";
 
 export const metadata: Metadata = {
   title: "Net Front",
@@ -18,8 +21,12 @@ export default function RootLayout({
 }>) {
   return (
     <PrimeReactProvider>
-      <html lang="pt-BR" >
-        <body>{children}</body>
+      <html lang="pt-BR">
+        <body>
+          <LayoutProvider>
+            <Layout>{children}</Layout>
+          </LayoutProvider>
+        </body>
       </html>
     </PrimeReactProvider>
   );
