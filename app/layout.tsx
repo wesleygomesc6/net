@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { PrimeReactProvider } from 'primereact/api';
+import "primereact/resources/primereact.min.css";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primeicons/primeicons.css";
+import "primeflex/primeflex.css";
+import "../public/styles/layout.scss";
+import "../public/styles/theme.scss";
+import { LayoutProvider } from "./contexts/LayoutContext";
+import Layout from "./components/layout";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,8 +20,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
-    </html>
+    <PrimeReactProvider>
+      <html lang="pt-BR">
+        <body>
+          <LayoutProvider>
+            <Layout>{children}</Layout>
+          </LayoutProvider>
+        </body>
+      </html>
+    </PrimeReactProvider>
   );
 }
