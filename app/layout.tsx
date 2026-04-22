@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { PrimeReactProvider } from 'primereact/api';
 import "primereact/resources/primereact.min.css";
+import 'primereact/resources/themes/lara-dark-blue/theme.css'
+import 'primereact/resources/themes/lara-light-blue/theme.css'
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 import 'primereact/resources/primereact.css';

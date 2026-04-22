@@ -13,7 +13,7 @@ import { LayoutContext } from './context/layoutcontext';
 const AppConfig = (props: AppConfigProps) => {
     const [scales] = useState([12, 13, 14, 15, 16]);
     const { layoutConfig, setLayoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
-    const { setRipple, changeTheme } = useContext(PrimeReactContext);
+    const {  changeTheme } = useContext(PrimeReactContext);
 
     const onConfigButtonClick = () => {
         setLayoutState((prevState: LayoutState) => ({ ...prevState, configSidebarVisible: true }));
@@ -23,14 +23,6 @@ const AppConfig = (props: AppConfigProps) => {
         setLayoutState((prevState: LayoutState) => ({ ...prevState, configSidebarVisible: false }));
     };
 
-    const changeInputStyle = (e: RadioButtonChangeEvent) => {
-        setLayoutConfig((prevState: LayoutConfig) => ({ ...prevState, inputStyle: e.value }));
-    };
-
-    const changeRipple = (e: InputSwitchChangeEvent) => {
-        setRipple?.(e.value as boolean);
-        setLayoutConfig((prevState: LayoutConfig) => ({ ...prevState, ripple: e.value as boolean }));
-    };
 
     const changeMenuMode = (e: RadioButtonChangeEvent) => {
         setLayoutConfig((prevState: LayoutConfig) => ({ ...prevState, menuMode: e.value }));
