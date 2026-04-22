@@ -9,7 +9,8 @@
     top: 0;
     width: 100%;
     padding: 0 2rem;
-    background-color: var(--surface-card);
+    color: #fff;
+    background-color: var(--primary-700);
     transition: left variables.$transitionDuration;
     display: flex;
     align-items: center;
@@ -18,16 +19,10 @@
     .layout-topbar-logo {
         display: flex;
         align-items: center;
-        color: var(--surface-900);
         font-size: 1.5rem;
         font-weight: 500;
-        width: 300px;
+        width: 18rem;
         border-radius: 12px;
-
-        img {
-            height: 2.5rem;
-            margin-right: .5rem;
-        }
 
         &:focus {
             @include mixins.focused();
@@ -35,11 +30,11 @@
     }
 
     .layout-topbar-button {
+        color: #fff;
         display: inline-flex;
         justify-content: center;
         align-items: center;
         position: relative;
-        color: var(--text-color-secondary);
         border-radius: 50%;
         width: 3rem;
         height: 3rem;
@@ -48,7 +43,7 @@
 
         &:hover {
             color: var(--text-color);
-            background-color: var(--surface-hover);
+            background-color: var(--primary-400);
         }
 
         &:focus {
@@ -63,10 +58,6 @@
             font-size: 1rem;
             display: none;
         }
-    }
-
-    .layout-menu-button {
-        margin-left: 2rem;
     }
 
     .layout-topbar-menu-button {
