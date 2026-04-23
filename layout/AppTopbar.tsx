@@ -1,22 +1,20 @@
- 
-
-import { AppTopbarRef } from '@/types';
-import Link from 'next/link';
-import { classNames } from 'primereact/utils';
-import { forwardRef, useContext, useImperativeHandle, useRef } from 'react';
-import { LayoutContext } from './context/layoutcontext';
+import { AppTopbarRef } from '@/types'
+import Link from 'next/link'
+import { classNames } from 'primereact/utils'
+import { forwardRef, useContext, useImperativeHandle, useRef } from 'react'
+import { LayoutContext } from './context/layoutcontext'
 
 const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
-    const {  layoutState, onMenuToggle, showProfileSidebar } = useContext(LayoutContext);
-    const menubuttonRef = useRef(null);
-    const topbarmenuRef = useRef(null);
-    const topbarmenubuttonRef = useRef(null);
+    const { layoutState, onMenuToggle, showProfileSidebar } = useContext(LayoutContext)
+    const menubuttonRef = useRef(null)
+    const topbarmenuRef = useRef(null)
+    const topbarmenubuttonRef = useRef(null)
 
     useImperativeHandle(ref, () => ({
         menubutton: menubuttonRef.current,
         topbarmenu: topbarmenuRef.current,
         topbarmenubutton: topbarmenubuttonRef.current
-    }));
+    }))
 
     return (
         <div className="layout-topbar">
@@ -49,9 +47,9 @@ const AppTopbar = forwardRef<AppTopbarRef>((props, ref) => {
                 </Link>
             </div>
         </div>
-    );
-});
+    )
+})
 
-AppTopbar.displayName = 'AppTopbar';
+AppTopbar.displayName = 'AppTopbar'
 
-export default AppTopbar;
+export default AppTopbar

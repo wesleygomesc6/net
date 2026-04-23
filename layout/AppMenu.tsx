@@ -1,8 +1,6 @@
- 
-
-import { AppMenuItem } from '@/types';
-import AppMenuitem from './AppMenuitem';
-import { MenuProvider } from './context/menucontext';
+import { AppMenuItem } from '@/types'
+import AppMenuitem from './AppMenuitem'
+import { MenuProvider } from './context/menucontext'
 
 const AppMenu = () => {
 
@@ -18,27 +16,27 @@ const AppMenu = () => {
                 { label: 'Disciplinas', icon: 'pi pi-fw pi-check-square', to: '/disciplinas' },
                 { label: 'Professores', icon: 'pi pi-fw pi-bookmark', to: '/professores' },
                 { label: 'Turmas', icon: 'pi pi-fw pi-exclamation-circle', to: '/turmas' }
-                
+
             ]
         },
         {
             label: 'Discentes',
             items: [
-                { label: 'Turmas', icon: 'pi pi-fw pi-eye', to: '/turmas'}
+                { label: 'Turmas', icon: 'pi pi-fw pi-eye', to: '/turmas' }
             ]
         },
-        
-    ];
+
+    ]
 
     return (
         <MenuProvider>
             <ul className="layout-menu">
                 {model.map((item, i) => {
-                    return !item?.seperator ? <AppMenuitem item={item} root={true} index={i} key={item.label} /> : <li className="menu-separator"></li>;
+                    return !item?.seperator ? <AppMenuitem item={item} root={true} index={i} key={item.label} /> : <li className="menu-separator"></li>
                 })}
             </ul>
         </MenuProvider>
-    );
-};
+    )
+}
 
-export default AppMenu;
+export default AppMenu
