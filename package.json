@@ -10,6 +10,7 @@
     "lint:fix": "eslint . --ext .ts,.tsx --fix"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "axios": "^1.15.2",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.20",
@@ -19,7 +20,9 @@
     "primereact": "^10.9.7",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "sass": "^1.99.0"
+    "react-hook-form": "^7.73.1",
+    "sass": "^1.99.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -27,6 +30,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
     "prettier": "^3.8.3",
     "typescript": "^5"
   }

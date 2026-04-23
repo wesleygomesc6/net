@@ -11,6 +11,7 @@ const eslintConfig = defineConfig([
       'semi': ['error', 'never'],
       'no-multiple-empty-lines': ['error', { 'max': 1, 'maxEOF': 0, 'maxBOF': 0 }],
       'no-trailing-spaces': 'error',
+      'max-len': ['error', { 'code': 120, 'ignoreComments': true, 'ignoreStrings': true }],
     }
   },
   // Override default ignores of eslint-config-next.

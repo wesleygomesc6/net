@@ -23,7 +23,6 @@ const AppConfig = (props: AppConfigProps) => {
         setLayoutState((prevState: LayoutState) => ({ ...prevState, configSidebarVisible: false }))
     }
 
-
     const changeMenuMode = (e: RadioButtonChangeEvent) => {
         setLayoutConfig((prevState: LayoutConfig) => ({ ...prevState, menuMode: e.value }))
     }

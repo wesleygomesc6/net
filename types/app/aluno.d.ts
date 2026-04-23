@@ -7,7 +7,3 @@ export interface AlunoProps {
     turmas?: TurmaProps[];
 
 }
-
-
-
-

@@ -18,10 +18,9 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-
     <html lang="pt-BR">
       <head>
         <link id="theme-css" href={'/themes/lara-light-blue/theme.css'} rel="stylesheet"></link>
@@ -29,10 +28,7 @@ export default function RootLayout({
       <body>
         <PrimeReactProvider>
           <LayoutProvider>
-            <Layout>
-
-              {children}
-            </Layout>
+            <Layout>{children}</Layout>
           </LayoutProvider>
         </PrimeReactProvider>
       </body>
