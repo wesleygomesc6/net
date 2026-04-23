@@ -1,55 +1,55 @@
-'use client';
+/* eslint-disable @next/next/no-img-element */
+'use client'
 
-import { AppConfigProps, LayoutConfig, LayoutState } from '@/types';
-import { PrimeReactContext } from 'primereact/api';
-import { Button } from 'primereact/button';
-import { InputSwitchChangeEvent } from 'primereact/inputswitch';
-import { RadioButton, RadioButtonChangeEvent } from 'primereact/radiobutton';
-import { Sidebar } from 'primereact/sidebar';
-import { classNames } from 'primereact/utils';
-import { useContext, useEffect, useState } from 'react';
-import { LayoutContext } from './context/layoutcontext';
+import { AppConfigProps, LayoutConfig, LayoutState } from '@/types'
+import { PrimeReactContext } from 'primereact/api'
+import { Button } from 'primereact/button'
+import { RadioButton, RadioButtonChangeEvent } from 'primereact/radiobutton'
+import { Sidebar } from 'primereact/sidebar'
+import { classNames } from 'primereact/utils'
+import { useContext, useEffect, useState } from 'react'
+import { LayoutContext } from './context/layoutcontext'
 
 const AppConfig = (props: AppConfigProps) => {
-    const [scales] = useState([12, 13, 14, 15, 16]);
-    const { layoutConfig, setLayoutConfig, layoutState, setLayoutState } = useContext(LayoutContext);
-    const {  changeTheme } = useContext(PrimeReactContext);
+    const [scales] = useState([12, 13, 14, 15, 16])
+    const { layoutConfig, setLayoutConfig, layoutState, setLayoutState } = useContext(LayoutContext)
+    const { changeTheme } = useContext(PrimeReactContext)
 
     const onConfigButtonClick = () => {
-        setLayoutState((prevState: LayoutState) => ({ ...prevState, configSidebarVisible: true }));
-    };
+        setLayoutState((prevState: LayoutState) => ({ ...prevState, configSidebarVisible: true }))
+    }
 
     const onConfigSidebarHide = () => {
-        setLayoutState((prevState: LayoutState) => ({ ...prevState, configSidebarVisible: false }));
-    };
+        setLayoutState((prevState: LayoutState) => ({ ...prevState, configSidebarVisible: false }))
+    }
 
 
     const changeMenuMode = (e: RadioButtonChangeEvent) => {
-        setLayoutConfig((prevState: LayoutConfig) => ({ ...prevState, menuMode: e.value }));
-    };
+        setLayoutConfig((prevState: LayoutConfig) => ({ ...prevState, menuMode: e.value }))
+    }
 
     const _changeTheme = (theme: string, colorScheme: string) => {
         changeTheme?.(layoutConfig.theme, theme, 'theme-css', () => {
-            setLayoutConfig((prevState: LayoutConfig) => ({ ...prevState, theme, colorScheme }));
-        });
-    };
+            setLayoutConfig((prevState: LayoutConfig) => ({ ...prevState, theme, colorScheme }))
+        })
+    }
 
     const decrementScale = () => {
-        setLayoutConfig((prevState: LayoutConfig) => ({ ...prevState, scale: prevState.scale - 1 }));
-    };
+        setLayoutConfig((prevState: LayoutConfig) => ({ ...prevState, scale: prevState.scale - 1 }))
+    }
 
     const incrementScale = () => {
-        setLayoutConfig((prevState: LayoutConfig) => ({ ...prevState, scale: prevState.scale + 1 }));
-    };
+        setLayoutConfig((prevState: LayoutConfig) => ({ ...prevState, scale: prevState.scale + 1 }))
+    }
 
     const applyScale = () => {
-        document.documentElement.style.fontSize = layoutConfig.scale + 'px';
-    };
+        document.documentElement.style.fontSize = layoutConfig.scale + 'px'
+    }
 
     useEffect(() => {
-        applyScale();
+        applyScale()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [layoutConfig.scale]);
+    }, [layoutConfig.scale])
 
     return (
         <>
@@ -65,7 +65,7 @@ const AppConfig = (props: AppConfigProps) => {
                             <Button icon="pi pi-minus" type="button" onClick={decrementScale} rounded text className="w-2rem h-2rem mr-2" disabled={layoutConfig.scale === scales[0]}></Button>
                             <div className="flex gap-2 align-items-center">
                                 {scales.map((item) => {
-                                    return <i className={classNames('pi pi-circle-fill', { 'text-primary-500': item === layoutConfig.scale, 'text-300': item !== layoutConfig.scale })} key={item}></i>;
+                                    return <i className={classNames('pi pi-circle-fill', { 'text-primary-500': item === layoutConfig.scale, 'text-300': item !== layoutConfig.scale })} key={item}></i>
                                 })}
                             </div>
                             <Button icon="pi pi-plus" type="button" onClick={incrementScale} rounded text className="w-2rem h-2rem ml-2" disabled={layoutConfig.scale === scales[scales.length - 1]}></Button>
@@ -97,12 +97,12 @@ const AppConfig = (props: AppConfigProps) => {
                             <img src="/layout/images/themes/lara-dark-blue.png" className="w-2rem h-2rem" alt="Lara Dark Blue" />
                         </button>
                     </div>
-                    
+
                 </div>
 
             </Sidebar>
         </>
-    );
-};
+    )
+}
 
-export default AppConfig;
+export default AppConfig

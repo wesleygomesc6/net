@@ -1,7 +1,7 @@
-'use client';
-import React, { useState, createContext } from 'react';
-import { LayoutState, ChildContainerProps, LayoutConfig, LayoutContextProps } from '@/types';
-export const LayoutContext = createContext({} as LayoutContextProps);
+'use client'
+import React, { useState, createContext } from 'react'
+import { LayoutState, ChildContainerProps, LayoutConfig, LayoutContextProps } from '@/types'
+export const LayoutContext = createContext({} as LayoutContextProps)
 
 export const LayoutProvider = ({ children }: ChildContainerProps) => {
     const [layoutConfig, setLayoutConfig] = useState<LayoutConfig>({
@@ -11,7 +11,7 @@ export const LayoutProvider = ({ children }: ChildContainerProps) => {
         colorScheme: 'light',
         theme: 'lara-light-blue',
         scale: 14
-    });
+    })
 
     const [layoutState, setLayoutState] = useState<LayoutState>({
         staticMenuDesktopInactive: false,
@@ -20,31 +20,31 @@ export const LayoutProvider = ({ children }: ChildContainerProps) => {
         configSidebarVisible: false,
         staticMenuMobileActive: false,
         menuHoverActive: false
-    });
+    })
 
     const onMenuToggle = () => {
         if (isOverlay()) {
-            setLayoutState((prevLayoutState) => ({ ...prevLayoutState, overlayMenuActive: !prevLayoutState.overlayMenuActive }));
+            setLayoutState((prevLayoutState) => ({ ...prevLayoutState, overlayMenuActive: !prevLayoutState.overlayMenuActive }))
         }
 
         if (isDesktop()) {
-            setLayoutState((prevLayoutState) => ({ ...prevLayoutState, staticMenuDesktopInactive: !prevLayoutState.staticMenuDesktopInactive }));
+            setLayoutState((prevLayoutState) => ({ ...prevLayoutState, staticMenuDesktopInactive: !prevLayoutState.staticMenuDesktopInactive }))
         } else {
-            setLayoutState((prevLayoutState) => ({ ...prevLayoutState, staticMenuMobileActive: !prevLayoutState.staticMenuMobileActive }));
+            setLayoutState((prevLayoutState) => ({ ...prevLayoutState, staticMenuMobileActive: !prevLayoutState.staticMenuMobileActive }))
         }
-    };
+    }
 
     const showProfileSidebar = () => {
-        setLayoutState((prevLayoutState) => ({ ...prevLayoutState, profileSidebarVisible: !prevLayoutState.profileSidebarVisible }));
-    };
+        setLayoutState((prevLayoutState) => ({ ...prevLayoutState, profileSidebarVisible: !prevLayoutState.profileSidebarVisible }))
+    }
 
     const isOverlay = () => {
-        return layoutConfig.menuMode === 'overlay';
-    };
+        return layoutConfig.menuMode === 'overlay'
+    }
 
     const isDesktop = () => {
-        return window.innerWidth > 991;
-    };
+        return window.innerWidth > 991
+    }
 
     const value: LayoutContextProps = {
         layoutConfig,
@@ -53,7 +53,7 @@ export const LayoutProvider = ({ children }: ChildContainerProps) => {
         setLayoutState,
         onMenuToggle,
         showProfileSidebar
-    };
+    }
 
-    return <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>;
-};
+    return <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>
+}
