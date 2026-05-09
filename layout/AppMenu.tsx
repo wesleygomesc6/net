@@ -13,16 +13,16 @@ const AppMenu = () => {
             label: 'Gestão',
             items: [
                 { label: 'Alunos', icon: 'pi pi-fw pi-id-card', to: '/alunos' },
-                { label: 'Disciplinas', icon: 'pi pi-fw pi-check-square', to: '/disciplinas' },
-                { label: 'Professores', icon: 'pi pi-fw pi-bookmark', to: '/professores' },
-                { label: 'Turmas', icon: 'pi pi-fw pi-exclamation-circle', to: '/turmas' }
+                { label: 'Disciplinas', icon: 'pi pi-fw pi-book', to: '/disciplinas' },
+                { label: 'Professores', icon: 'pi pi-fw pi-users', to: '/professores' },
+                { label: 'Turmas', icon: 'pi pi-fw pi-graduation-cap', to: '/turmas' }
 
             ]
         },
         {
             label: 'Discentes',
             items: [
-                { label: 'Turmas', icon: 'pi pi-fw pi-eye', to: '/turmas' }
+                { label: 'Turmas', icon: 'pi pi-fw pi-graduation-cap', to: '/discentes/turmas' }
             ]
         },
 

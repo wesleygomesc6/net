@@ -1,25 +1,25 @@
 'use client'
-import { AlunoProps } from '@/types/app/aluno'
+import { ProfessorProps } from '@/types/app/professor'
 import { useContext, useEffect, useState } from 'react'
-import { listarAlunos } from '../api/aluno/listar'
+import { listarProfessores } from '../api/professor/listar'
 import { DataTable } from 'primereact/datatable'
 import { Column } from 'primereact/column'
 import { calcularIdade } from '../utils/calcular-idade'
 import { TurmaProps } from '@/types/app/turma'
 import { Button } from 'primereact/button'
 import { Controller, useForm } from 'react-hook-form'
-import { alunoSchema, AlunoSchema } from '../schemas/aluno'
+import { professorSchema, ProfessorSchema } from '../schemas/professor'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Dialog } from 'primereact/dialog'
 import { InputText } from 'primereact/inputtext'
 import { Calendar } from 'primereact/calendar'
-import { criarAluno } from '../api/aluno/criar'
+import { criarProfessor } from '../api/professor/criar'
 import { NotificacaoToastContext } from '@/layout/context/notificacaotoastcontext'
 
-export default function AlunosPage() {
+export default function ProfessoresPage() {
   const { exibirNotificacaoToast } = useContext(NotificacaoToastContext)
-  const [alunos, setAlunos] = useState<AlunoProps[]>([])
-  const [loadingAlunos, setLoadingAlunos] = useState(false)
+  const [professores, setProfessores] = useState<ProfessorProps[]>([])
+  const [loadingProfessores, setLoadingProfessores] = useState(false)
   const [dialogoAberto, setDialogoAberto] = useState(false)
 
   const {
@@ -29,8 +29,8 @@ export default function AlunosPage() {
     reset,
     setFocus,
     formState: { isValid: formularioEhValido, isLoading: salvando },
-  } = useForm<AlunoSchema>({
-    resolver: zodResolver(alunoSchema),
+  } = useForm<ProfessorSchema>({
+    resolver: zodResolver(professorSchema),
     defaultValues: {
       id: undefined,
       nome: '',
@@ -41,36 +41,36 @@ export default function AlunosPage() {
   })
 
   useEffect(() => {
-    async function fetchAlunos() {
-      setLoadingAlunos(true)
+    async function fetchProfessores() {
+      setLoadingProfessores(true)
       try {
-        const response = await listarAlunos()
-        setAlunos(response)
+        const response = await listarProfessores()
+        setProfessores(response)
       } catch (error) {
-        console.error('Erro ao listar alunos:', error)
+        console.error('Erro ao listar professores:', error)
       } finally {
-        setLoadingAlunos(false)
+        setLoadingProfessores(false)
       }
     }
-    fetchAlunos()
+    fetchProfessores()
   }, [])
 
-  async function salvarAluno(aluno: AlunoSchema) {
+  async function salvarProfessor(professor: ProfessorSchema) {
     try {
-      const response = await criarAluno(aluno)
-      setAlunos((prev) => [...prev, response])
+      const response = await criarProfessor(professor)
+      setProfessores((prev) => [...prev, response])
       exibirNotificacaoToast({
         severity: 'success',
         summary: 'Sucesso',
-        detail: 'Aluno salvo com sucesso',
+        detail: 'Professor salvo com sucesso',
       })
       fecharDialogo()
     } catch (error) {
-      console.error('Erro ao salvar aluno:', error)
+      console.error('Erro ao salvar professor:', error)
       exibirNotificacaoToast({
         severity: 'error',
         summary: 'Erro',
-        detail: 'Erro ao salvar aluno',
+        detail: 'Erro ao salvar professor',
       })
     }
   }
@@ -84,19 +84,19 @@ export default function AlunosPage() {
     <div className="flex flex-column gap-2">
       <Dialog
         className="w-11 md:w-8 lg:w-6 xl:w-4"
-        header="Adicionar um novo aluno"
+        header="Adicionar um novo professor"
         visible={dialogoAberto}
         draggable={false}
         closeOnEscape={false}
         onHide={fecharDialogo}
       >
-        <form className="flex flex-column gap-3" onSubmit={handleSubmit(salvarAluno)}>
-          <InputText {...register('nome')} placeholder="Digite o nome do aluno" title="digite o nome do aluno" />
+        <form className="flex flex-column gap-3" onSubmit={handleSubmit(salvarProfessor)}>
+          <InputText {...register('nome')} placeholder="Digite o nome do professor" title="digite o nome do professor" />
           <InputText
             {...register('email')}
             type="email"
-            placeholder="Digite o e-mail do aluno"
-            title="digite o e-mail do aluno"
+            placeholder="Digite o e-mail do professor"
+            title="digite o e-mail do professor"
           />
           <Controller
             control={control}
@@ -127,7 +127,7 @@ export default function AlunosPage() {
               type="submit"
               severity="success"
               size="small"
-              title="salvar aluno"
+              title="salvar professor"
               disabled={!formularioEhValido || salvando}
               icon="pi pi-check"
             />
@@ -135,13 +135,13 @@ export default function AlunosPage() {
         </form>
       </Dialog>
       <div className="flex justify-content-between">
-        <span className="text-2xl uppercase font-medium">Alunos</span>
+        <span className="text-2xl uppercase font-medium">Professores</span>
         <Button
-          label="Adicionar Aluno"
+          label="Adicionar Professor"
           icon="pi pi-plus"
           outlined
           size="small"
-          title="adicionar aluno"
+          title="adicionar professor"
           onClick={() => {
             setTimeout(() => {
               setFocus('nome')
@@ -150,7 +150,7 @@ export default function AlunosPage() {
           }}
         />
       </div>
-      <DataTable value={alunos} loading={loadingAlunos} stripedRows rowHover emptyMessage="Nenhum aluno encontrado">
+      <DataTable value={professores} loading={loadingProfessores} stripedRows rowHover emptyMessage="Nenhum professor encontrado">
         <Column field="id" header="Matrícula" />
         <Column field="nome" header="Nome" />
         <Column field="email" header="E-mail" />
