@@ -18,13 +18,7 @@ const AppMenu = () => {
                 { label: 'Turmas', icon: 'pi pi-fw pi-exclamation-circle', to: '/turmas' }
 
             ]
-        },
-        {
-            label: 'Discentes',
-            items: [
-                { label: 'Turmas', icon: 'pi pi-fw pi-eye', to: '/turmas' }
-            ]
-        },
+        }
 
     ]
 
